@@ -5,10 +5,15 @@ const router = express.Router();
 const productController = require('../controller/productController');
 
 
-router.get('/',  (req, res) => {
-    res.send('Hello World');
+
+router.get('/healthcheck', (req, res) => { 
+    res.json({ status: 'UP'}); 
 });
 
-router.get('/product', productController.getProduct);
+// Validate Headers.
+
+router.get('/products', productController.getProduct);
+
+router.get('/product/:id', productController.getProductById);
 
 module.exports = router;
